@@ -13,8 +13,19 @@ func main() {
 	// This handles routing different URLs to different functions
 	mux := http.NewServeMux()
 
-	fs := http.FileServer(http.Dir("../frontend"))
-	mux.Handle("/", fs)
+    // Serve static files - try multiple paths for Railway
+    var frontendDir string
+    if _, err := os.Stat("../frontend"); err == nil {
+        frontendDir = "../frontend"
+    } else if _, err := os.Stat("./frontend"); err == nil {
+        frontendDir = "./frontend"
+    } else {
+        frontendDir = "."
+    }
+    
+    log.Printf("Serving static files from: %s", frontendDir)
+    fs := http.FileServer(http.Dir(frontendDir))
+    mux.Handle("/", fs)
 
 	// Register route handlers
 	// When someone visits these URLs, these functions will be called
