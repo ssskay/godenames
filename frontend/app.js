@@ -1,7 +1,9 @@
 "use strict";
 class CodenamesGame {
     constructor() {
-        this.apiUrl = 'http://localhost:8080/api';
+        this.apiUrl = window.location.hostname === 'localhost'
+            ? 'http://localhost:8080/api'
+            : '/api';
         this.spymasterMode = false;
         this.gameState = null;
         this.initializeEventListeners();

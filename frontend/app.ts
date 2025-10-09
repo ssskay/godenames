@@ -21,7 +21,9 @@ interface GameState {
 // Class to manage our game's frontend logic
 class CodenamesGame {
     // Private properties (only accessible within this class)
-    private apiUrl: string = 'http://localhost:8080/api';
+    private apiUrl: string = window.location.hostname === 'localhost' 
+    ? 'http://localhost:8080/api'
+    : '/api';  // Use relative URL in production
     private spymasterMode: boolean = false;
     private gameState: GameState | null = null;
 
