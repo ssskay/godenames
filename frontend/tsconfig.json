@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2020",                          // Modern JavaScript features
+    "lib": ["ES2020", "DOM"],                    // Include DOM types for browser APIs
+    
+    /* Modules */
+    "module": "ES2020",                          // Use ES modules (import/export)
+    "moduleResolution": "node",                  // How to resolve module imports
+    
+    /* Emit */
+    "outDir": "./",                              // Output compiled .js files here
+    "rootDir": "./",                             // Source files are in this directory
+    "removeComments": true,                      // Strip comments from output
+    "sourceMap": true,                           // Generate .map files for debugging
+    
+    /* Type Checking */
+    "strict": true,                              // Enable all strict type-checking options
+    "noUnusedLocals": true,                      // Error on unused local variables
+    "noUnusedParameters": true,                  // Error on unused function parameters
+    "noImplicitReturns": true,                   // Error when not all code paths return
+    "noFallthroughCasesInSwitch": true,         // Error on switch fallthrough
+    
+    /* Interop Constraints */
+    "esModuleInterop": true,                     // Better compatibility with CommonJS
+    "forceConsistentCasingInFileNames": true,   // Enforce consistent file name casing
+    
+    /* Completeness */
+    "skipLibCheck": true                         // Skip type checking of declaration files
+  },
+  "include": [
+    "app.ts"                                     // Only compile app.ts
+  ],
+  "exclude": [
+    "node_modules"                               // Don't compile dependencies
+  ]
+}

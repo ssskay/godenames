@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codenames Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Codenames</h1>
+            <div class="game-info">
+                <div class="team-score red">
+                    <span class="label">Red Team:</span>
+                    <span id="red-score">9</span>
+                </div>
+                <div class="current-turn">
+                    <span id="current-team">Red</span> Team's Turn
+                </div>
+                <div class="team-score blue">
+                    <span class="label">Blue Team:</span>
+                    <span id="blue-score">8</span>
+                </div>
+            </div>
+            
+            <div id="current-clue-display" class="current-clue-display hidden">
+                <strong>Current Clue:</strong> 
+                <span id="clue-text"></span>
+            </div>
+        </header>
+
+        <main>
+            <div id="game-board" class="game-board">
+                <!-- Cards will be dynamically generated here by TypeScript -->
+            </div>
+
+            <div id="game-over" class="game-over hidden">
+                <h2>Game Over!</h2>
+                <p id="winner-text"></p>
+                <button id="new-game-btn" class="btn btn-primary">New Game</button>
+            </div>
+        </main>
+
+        <footer>
+            <div class="clue-section">
+                <h3>Submit Clue</h3>
+                <div class="clue-inputs">
+                    <input 
+                        type="text" 
+                        id="clue-word-input" 
+                        placeholder="Clue word (e.g., OCEAN)"
+                        maxlength="20"
+                    >
+                    <input 
+                        type="number" 
+                        id="clue-number-input" 
+                        placeholder="Number"
+                        min="1"
+                        max="9"
+                        value="1"
+                    >
+                    <button id="submit-clue-btn" class="btn btn-primary">
+                        Submit Clue
+                    </button>
+                </div>
+            </div>
+            
+            <button id="start-game-btn" class="btn btn-primary">Start New Game</button>
+            <button id="spymaster-mode-btn" class="btn btn-secondary">Toggle Spymaster View</button>
+        </footer>
+    </div>
+
+    <!-- TypeScript compiled to JavaScript module -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
