@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 )
 
 // main is the entry point of our Go program
@@ -11,6 +12,9 @@ func main() {
 	// Create a new HTTP router (multiplexer)
 	// This handles routing different URLs to different functions
 	mux := http.NewServeMux()
+
+	fs := http.FileServer(http.Dir("../frontend"))
+	mux.Handle("/", fs)
 
 	// Register route handlers
 	// When someone visits these URLs, these functions will be called
@@ -24,17 +28,22 @@ func main() {
 	// This allows our frontend (running on a different port) to talk to the backend
 	handler := enableCORS(mux)
 
-	// Start the server on port 8080
-	log.Println("Server starting on http://localhost:8080")
-	if err := http.ListenAndServe(":8080", handler); err != nil {
-		log.Fatal(err)
-	}
+    port := os.Getenv("PORT")
+    if port == "" {
+        port = "8080"  // Default for local development
+    }
+    
+    log.Printf("Server starting on port %s", port)
+    if err := http.ListenAndServe(":"+port, handler); err != nil {
+        log.Fatal(err)
+    }
 }
 
 // enableCORS wraps our handler to add CORS headers
 // CORS headers tell the browser it's OK for our frontend to access this API
 func enableCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		origin := r.Header.Get("Origin")
 		// Allow requests from any origin (in production, you'd restrict this)
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
