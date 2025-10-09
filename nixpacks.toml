@@ -1,0 +1,14 @@
+[phases.setup]
+nixPkgs = ["nodejs", "go_1_21"]
+
+[phases.install]
+cmds = ["cd frontend && npm install"]
+
+[phases.build]
+cmds = [
+  "cd frontend && npx tsc",
+  "cd backend && go build -o server main.go game.go"
+]
+
+[start]
+cmd = "./backend/server"
