@@ -267,3 +267,6 @@ From knowing nothing about Go and TypeScript to:
 - Debugging techniques
 
 **Keep going! You're doing great!** 🎉
+---
+
+Maintained by [Sara Kay](https://sarakay.me) · [@ssskay](https://github.com/ssskay) · [more projects](https://sarakay.me/projects.html)
